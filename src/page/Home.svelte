@@ -14,7 +14,7 @@
 			<h3>
 				Github
 			</h3>
-			<a href="https://wakatime.com/@wireless4024" target="_blank">
+			<a href="https://github.com/Wireless4024" target="_blank">
 				<img src="https://github-readme-streak-stats.herokuapp.com?user=Wireless4024&hide_border=false&hide_title=true"
 				     alt="Github">
 			</a>
