@@ -15,8 +15,8 @@
 				Github
 			</h3>
 			<a href="https://wakatime.com/@wireless4024" target="_blank">
-				<img src="https://github-readme-stats.vercel.app/api?username=wireless4024&show_icons=true&hide_border=true&hide_title=true"
-				     alt="Wakatime">
+				<img src="https://github-readme-streak-stats.herokuapp.com?user=Wireless4024&hide_border=false&hide_title=true"
+				     alt="Github">
 			</a>
 		</div>
 		<div>
@@ -24,7 +24,7 @@
 				Wakatime (Since 28 Jul 2022)
 			</h3>
 			<a href="https://wakatime.com/@wireless4024" target="_blank">
-				<img src="https://github-readme-stats.vercel.app/api/wakatime?username=wireless4024&show_icons=true&locale=en&layout=compact&hide_border=true&hide_title=true"
+				<img src="https://github-readme-stats.vercel.app/api/wakatime?username=wireless4024&show_icons=true&locale=en&layout=compact&hide_border=false&hide_title=true"
 				     alt="Wakatime">
 			</a>
 		</div>
