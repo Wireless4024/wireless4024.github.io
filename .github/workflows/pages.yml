@@ -54,7 +54,7 @@ jobs:
     needs: build
     environment:
       name: github-pages
-      url: wireless4024.github.io
+      url: https://wireless4024.github.io
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v1
