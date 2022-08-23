@@ -1,12 +1,6 @@
 <script lang="ts">
 	import Router from "svelte-spa-router"
-	import wrap   from "svelte-spa-router/wrap"
-
-	const routes = {
-		'/': wrap({
-			asyncComponent: () => import("./lib/Home.svelte")
-		})
-	}
+	import routes from "./util/routes.js";
 </script>
 
 <main>
