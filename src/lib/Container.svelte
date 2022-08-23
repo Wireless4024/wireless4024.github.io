@@ -1,0 +1,22 @@
+<div class="container-wrap">
+	<slot></slot>
+</div>
+<style>
+	.container-wrap {
+		margin: 0 auto;
+		max-width: 1280px;
+		width: 100%;
+	}
+
+	@media only screen and (min-width: 601px) {
+		.container-wrap {
+			width: 95%;
+		}
+	}
+
+	@media only screen and (min-width: 993px) {
+		.container-wrap {
+			width: 90%;
+		}
+	}
+</style>
