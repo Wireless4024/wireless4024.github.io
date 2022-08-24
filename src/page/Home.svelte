@@ -44,6 +44,6 @@
 </Container>
 <style>
 	.safe-width {
-		max-width: 100vw;
+		max-width: 92vw;
 	}
 </style>
