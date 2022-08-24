@@ -5,8 +5,8 @@
 
 	export let params: { name?: string } = {}
 
-	let project_name:string = params.name
-	let project:Project = projects.find(it => it.name == project_name)
+	let project_name: string | undefined = params.name
+	let project: Project = projects.find(it => it.name == project_name)
 </script>
 <Container>
 	{#if project}

@@ -3,7 +3,7 @@
 
 	export let href: string
 	export let src: string
-	export let alt: string
+	export let alt: string | undefined
 	if (!alt) alt = href
 
 	let loading: boolean = true
