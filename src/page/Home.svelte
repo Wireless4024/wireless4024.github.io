@@ -6,10 +6,10 @@
 	import ProjectCard from "../lib/ProjectCard.svelte";
 </script>
 <Container>
-	<h1 class="mdc-typography--headline1">Hello? looking for something?</h1>
+	<h1 class="center mdc-typography--headline1">Hello? looking for something?</h1>
 	<hr>
-	<h2 class="mdc-typography--headline6">My Stats</h2>
-	<div>
+	<h2 class="center mdc-typography--headline6">My Stats</h2>
+	<div class="center">
 		<div>
 			<h3>
 				Github
@@ -33,7 +33,7 @@
 	</div>
 
 	<hr>
-	<h2 class="mdc-typography--headline6">My projects</h2>
+	<h2 class="mdc-typography--headline6 center">My projects</h2>
 	<LayoutGrid>
 		{#each projects as project}
 			<GridCard>
@@ -45,5 +45,9 @@
 <style>
 	.safe-width {
 		max-width: 92vw;
+	}
+
+	.center {
+		text-align: center;
 	}
 </style>
