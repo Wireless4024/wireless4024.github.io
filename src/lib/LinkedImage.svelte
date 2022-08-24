@@ -14,7 +14,7 @@
 	<LinearProgress indeterminate/>
 {/if}
 <a {href} target="_blank" class:hidden={loading}>
-	<img on:load|once={loadFinish} class="safe-width border" {src} {alt}>
+	<img on:load|once={loadFinish} class="safe-width border mdc-elevation--z5" {src} {alt}>
 </a>
 <style>
 	.safe-width {

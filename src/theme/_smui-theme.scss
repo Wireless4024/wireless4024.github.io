@@ -11,6 +11,8 @@
   $error: color-palette.$red-800,
 );
 
+@use "@material/elevation/mdc-elevation";
+
 $link: color-palette.$cyan-300;
 
 html,
