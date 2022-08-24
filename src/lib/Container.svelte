@@ -1,4 +1,7 @@
-<div class="container-wrap">
+<script lang="ts">
+	import {fly} from "svelte/transition"
+</script>
+<div in:fly class="container-wrap">
 	<slot></slot>
 </div>
 <style>
