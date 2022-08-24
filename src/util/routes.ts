@@ -1,14 +1,15 @@
-import wrap    from "svelte-spa-router/wrap"
-import Loading from "../page/Loading.svelte"
+import type {AsyncSvelteComponent} from "svelte-spa-router"
+import wrap                        from "svelte-spa-router/wrap"
+import Loading                     from "../page/Loading.svelte"
 
-function component(path: string) {
+function component(asyncComponent: AsyncSvelteComponent) {
 	return wrap({
-		asyncComponent  : () => import(path),
+		asyncComponent,
 		loadingComponent: Loading
 	})
 }
 
 export default {
-	'/'             : component("../page/Home.svelte"),
-	'/project/:name': component("../page/Project.svelte")
+	'/'             : component(() => import("../page/Home.svelte")),
+	'/project/:name': component(() => import("../page/Project.svelte"))
 }
