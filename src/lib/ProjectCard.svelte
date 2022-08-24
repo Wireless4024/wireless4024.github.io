@@ -19,7 +19,9 @@
                 .map(({name, language}) => `${name} (${language})`)
                 .join(", "))}</h3>
 		{/if}
-		{project.description}
+		<div class="project-description">
+			{project.description}
+		</div>
 	</Content>
 	<Actions fullBleed>
 		<Button target="_blank" href={project.repo}>
@@ -28,3 +30,10 @@
 		</Button>
 	</Actions>
 </Card>
+<style>
+	.project-description {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+</style>
