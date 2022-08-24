@@ -19,7 +19,7 @@
                 .map(({name, language}) => `${name} (${language})`)
                 .join(", "))}</h3>
 		{/if}
-		<div class="project-description">
+		<div class="project-description" title={project.description}>
 			{project.description}
 		</div>
 	</Content>
