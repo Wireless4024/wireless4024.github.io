@@ -3,6 +3,10 @@
 </div>
 <style>
 	.container-wrap {
+		padding-top: 12px;
+	}
+
+	.container-wrap {
 		margin: 0 auto;
 		max-width: 1280px;
 		width: 100%;

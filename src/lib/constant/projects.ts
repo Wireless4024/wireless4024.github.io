@@ -1,10 +1,11 @@
 import type {Project}              from "../types/project"
 import {ProjectTechnologyCategory} from "../types/project"
 
-const AXUM = {
+const AXUM: Project["technology"][number] = {
 	name    : "Axum",
 	language: "Rust",
-	category: ProjectTechnologyCategory.HTTPFramework
+	category: ProjectTechnologyCategory.HTTPFramework,
+	url     : "https://github.com/tokio-rs/axum"
 }
 
 export default [
@@ -34,7 +35,8 @@ export default [
 			{
 				name    : "Ktor",
 				language: "Kotlin",
-				category: ProjectTechnologyCategory.HTTPClient
+				category: ProjectTechnologyCategory.HTTPClient,
+				url     : "https://ktor.io/"
 			},
 		],
 		since      : new Date("19 Feb 2022"),

@@ -8,12 +8,13 @@ export type Project = {
 }
 
 export enum ProjectTechnologyCategory {
-	HTTPFramework,
-	HTTPClient
+	HTTPFramework = "HTTP Framework",
+	HTTPClient    = "HTTP Client",
 }
 
 type ProjectTechnology = {
 	name: string
 	language?: string
 	category: ProjectTechnologyCategory
+	url: string
 }
