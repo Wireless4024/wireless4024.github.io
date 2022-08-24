@@ -4,6 +4,7 @@
 		Actions,
 		Content
 	}                      from "@smui/card"
+	import {push}          from "svelte-spa-router";
 	import type {Project}  from "./types/project"
 
 	export let project: Project
@@ -24,7 +25,7 @@
 		</div>
 	</Content>
 	<Actions fullBleed>
-		<Button target="_blank" href={project.repo}>
+		<Button target="_blank" on:click={()=>push("/project/"+encodeURIComponent(project.name))}>
 			<Label>read more</Label>
 			<i class="material-icons" aria-hidden="true">arrow_forward</i>
 		</Button>
