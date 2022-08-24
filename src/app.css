@@ -84,3 +84,7 @@ button:focus-visible {
 body {
 	font-family: Ubuntu, sans-serif;
 }
+
+.hidden {
+	opacity: 0;
+}
