@@ -6,6 +6,7 @@
 		Row,
 		Section,
 	}                                   from '@smui/top-app-bar'
+	import {push}                       from "svelte-spa-router";
 	//Title,
 
 	let topAppBar: TopAppBarComponentDev
@@ -17,9 +18,7 @@
 			<!--<Title>Dense</Title>-->
 		</Section>
 		<Section align="end" toolbar>
-			<IconButton class="material-icons" aria-label="Download"
-			            on:click={()=>alert("I'm a decorator no functional")}>check_box
-			</IconButton>
+			<IconButton class="material-icons" title="go home" aria-label="back to home page" on:click={()=>push('/')}>home</IconButton>
 			<!--<IconButton class="material-icons" aria-label="Print this page">print</IconButton>
 			<IconButton class="material-icons" aria-label="Bookmark this page">bookmark</IconButton>-->
 		</Section>
