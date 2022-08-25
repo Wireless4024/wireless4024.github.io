@@ -8,6 +8,10 @@
 </script>
 <Container>
 	<h1 class="center mdc-typography--headline1">Hello? looking for something?</h1>
+	<h2 class="center mdc-typography--headline1">
+		here is
+		<a href="https://github.com/Wireless4024">My Github</a>
+	</h2>
 	<hr>
 	<h2 class="center mdc-typography--headline6">My Stats</h2>
 	<div class="center">
