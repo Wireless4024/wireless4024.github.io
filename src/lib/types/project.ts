@@ -10,6 +10,8 @@ export type Project = {
 export enum ProjectTechnologyCategory {
 	HTTPFramework = "HTTP Framework",
 	HTTPClient    = "HTTP Client",
+	Database      = "Database",
+	Language      = "Language",
 }
 
 type ProjectTechnology = {
@@ -17,4 +19,12 @@ type ProjectTechnology = {
 	language?: string
 	category: ProjectTechnologyCategory
 	url: string
+}
+
+export function language_as_technology(language: string, url: string): ProjectTechnology {
+	return {
+		category: ProjectTechnologyCategory.Language,
+		name    : language,
+		url
+	}
 }

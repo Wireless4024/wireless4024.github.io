@@ -17,7 +17,7 @@
 			    style="margin: 0 0 10px; color: #888;">{(
               project
                 .technology
-                .map(({name, language}) => `${name} (${language})`)
+                .map(({name, language}) => language ? `${name} (${language})` : name)
                 .join(", "))}</h3>
 		{/if}
 		<div class="project-description" title={project.description}>

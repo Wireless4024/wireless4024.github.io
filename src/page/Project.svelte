@@ -53,10 +53,14 @@
 						{#each project.technology as technology}
 							<Item>
 								<Text>
-									<PrimaryText>
+									{#if technology.language}
+										<PrimaryText>
+											<a href={technology.url}>{technology.name} ({technology.category})</a>
+										</PrimaryText>
+										<SecondaryText>{technology.language}</SecondaryText>
+									{:else}
 										<a href={technology.url}>{technology.name} ({technology.category})</a>
-									</PrimaryText>
-									<SecondaryText>{technology.language}</SecondaryText>
+									{/if}
 									<!--<SecondaryText></SecondaryText>-->
 								</Text>
 							</Item>
