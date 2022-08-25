@@ -21,44 +21,50 @@
 </script>
 <Container>
 	{#if project}
-		<Paper>
-			<Title>{project.name}</Title>
-			{#if project.repo}
-				<Subtitle>
-					<a href={project.repo}>{project.repo}</a>
-				</Subtitle>
-			{/if}
-			<Content>{project.description}</Content>
-		</Paper>
-		<Paper style="margin-top: 12px;">
-			<Title>Features</Title>
-			<Content>
-				<!--threeLine-->
-				<ul>
-					{#each project.features as feature}
-						<li>{feature}</li>
-					{/each}
-				</ul>
-			</Content>
-		</Paper>
-		<Paper style="margin-top: 12px;">
-			<Title>Technology</Title>
-			<Content>
-				<List nonInteractive>
-					{#each project.technology as technology}
-						<Item>
-							<Text>
-								<PrimaryText>
-									<a href={technology.url}>{technology.name} ({technology.category})</a>
-								</PrimaryText>
-								<SecondaryText>{technology.language}</SecondaryText>
-								<!--<SecondaryText></SecondaryText>-->
-							</Text>
-						</Item>
-					{/each}
-				</List>
-			</Content>
-		</Paper>
+		<div class="border">
+			<Paper>
+				<Title>{project.name}</Title>
+				{#if project.repo}
+					<Subtitle>
+						<a href={project.repo}>{project.repo}</a>
+					</Subtitle>
+				{/if}
+				<Content>{project.description}</Content>
+			</Paper>
+		</div>
+		<div class="border" style="margin-top: 8px">
+			<Paper>
+				<Title>Features</Title>
+				<Content>
+					<!--threeLine-->
+					<ul>
+						{#each project.features as feature}
+							<li>{feature}</li>
+						{/each}
+					</ul>
+				</Content>
+			</Paper>
+		</div>
+		<div class="border" style="margin-top: 8px">
+			<Paper>
+				<Title>Technology</Title>
+				<Content>
+					<List nonInteractive>
+						{#each project.technology as technology}
+							<Item>
+								<Text>
+									<PrimaryText>
+										<a href={technology.url}>{technology.name} ({technology.category})</a>
+									</PrimaryText>
+									<SecondaryText>{technology.language}</SecondaryText>
+									<!--<SecondaryText></SecondaryText>-->
+								</Text>
+							</Item>
+						{/each}
+					</List>
+				</Content>
+			</Paper>
+		</div>
 	{:else}
 		<h1>Project '{project_name}' was not found</h1>
 	{/if}
