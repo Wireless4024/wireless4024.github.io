@@ -17,7 +17,7 @@ export enum ProjectTechnologyCategory {
 type ProjectTechnology = {
 	name: string
 	language?: string
-	category: ProjectTechnologyCategory
+	category: ProjectTechnologyCategory | string
 	url: string
 }
 

@@ -22,6 +22,8 @@ const POSTGRES: Project["technology"][number] = {
 	url     : "https://www.postgresql.org/"
 }
 
+const KOTLIN = language_as_technology("Kotlin", "https://kotlinlang.org/")
+
 export default [
 	{
 		name       : "lnshm",
@@ -77,8 +79,8 @@ export default [
 		technology : [
 			SPRING, POSTGRES
 		],
-		since      : new Date("7 Apr 2022"),
-		repo       : "https://github.com/Wireless4024/voting"
+		since      : new Date("22 Mar 2022"),
+		repo       : "https://github.com/Wireless4024/trashcan"
 	},
 	{
 		name       : "MMCUpdater",
@@ -100,5 +102,47 @@ export default [
 		],
 		since      : new Date("19 Feb 2022"),
 		repo       : "https://github.com/Wireless4024/mmcupdater-server"
+	},
+	{
+		name       : "Launchpad Util",
+		description: "Program your launchpad with kotlin",
+		features   : [
+			"Emulate human input w/ java.util.Robot",
+			"Drawing word on launchpad",
+			"Drawing gif on launchpad",
+		],
+		technology : [
+			KOTLIN
+		],
+		since      : new Date("Nov 2021"),
+		repo       : "https://github.com/Wireless4024/launchpad-util"
+	},
+	{
+		name       : "DiscordBot",
+		description: "Basic discord bot with basic feature",
+		features   : [
+			"Calculator that support number beyond 2**(2**32) bit",
+			"Music player with adjustable equalizer (very new in 2019)",
+			"Sandbox javascript evaluator (by Rhino)",
+			"Temporary sqlite session (in memory)",
+			"String manipulation",
+		],
+		technology : [
+			KOTLIN,
+			{
+				name    : "JDA",
+				language: "Java",
+				category: "Discord API",
+				url     : "https://github.com/DV8FromTheWorld/JDA"
+			},
+			{
+				name    : "Rhino",
+				language: "Java",
+				category: "Javascript Engine",
+				url     : "https://github.com/mozilla/rhino"
+			},
+		],
+		since      : new Date("11 Aug 2019"),
+		repo       : "https://github.com/Wireless4024/DiscordBot"
 	},
 ] as Project[]
