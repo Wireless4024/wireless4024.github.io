@@ -12,8 +12,8 @@
 	let topAppBar: TopAppBarComponentDev
 
 	function rick_roll() {
-		if (window.confirm("https://www.youtube.com/watch?v=dQw4w9WgXcQ")) {
-			window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+		if (window.confirm("Do you want to open menu")) {
+			window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank').focus();
 		}
 	}
 </script>
