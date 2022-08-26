@@ -11,5 +11,6 @@ function component(asyncComponent: AsyncSvelteComponent) {
 
 export default {
 	'/'             : component(() => import("../page/Home.svelte")),
+	'/projects'     : component(() => import("../page/ProjectList.svelte")),
 	'/project/:name': component(() => import("../page/Project.svelte"))
 }

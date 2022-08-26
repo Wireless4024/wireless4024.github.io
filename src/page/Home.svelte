@@ -1,5 +1,7 @@
 <script lang="ts">
+	import Button      from "@smui/button";
 	import LayoutGrid  from "@smui/layout-grid"
+	import {push}      from "svelte-spa-router";
 	import projects    from "../lib/constant/projects.js";
 	import Container   from "../lib/Container.svelte";
 	import GridCard    from "../lib/GridCard.svelte";
@@ -36,15 +38,19 @@
 	<hr>
 	<h2 class="mdc-typography--headline6 center">My projects</h2>
 	<LayoutGrid>
-		{#each projects as project}
+		{#each projects.slice(0, 4) as project}
 			<GridCard>
 				<ProjectCard {project}></ProjectCard>
 			</GridCard>
 		{/each}
 	</LayoutGrid>
+	{#if projects.length > 4}
+		<div class="center">
+			<div style="margin-bottom: 32px">
+				<Button class="border-out" style="background: white" on:click={()=>push('/projects')}>view
+					all {projects.length} projects
+				</Button>
+			</div>
+		</div>
+	{/if}
 </Container>
-<style>
-	.center {
-		text-align: center;
-	}
-</style>

@@ -31,6 +31,11 @@ a:visited {
 
 .border {
   padding: 5px;
-  border-radius: 8px; // #ff980060
+  border-radius: 8px;
   background-color: color.scale(theme.$primary, $alpha: -35%);
+}
+
+.border-out {
+  border-radius: 8px !important;
+  border: color.scale(theme.$primary, $alpha: -35%) 5px solid !important;
 }

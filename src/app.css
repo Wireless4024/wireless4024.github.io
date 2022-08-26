@@ -89,3 +89,8 @@ body {
 .hidden {
 	opacity: 0;
 }
+
+.center {
+	text-align: center;
+	margin-left: auto;
+}
