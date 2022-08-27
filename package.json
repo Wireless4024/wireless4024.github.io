@@ -17,7 +17,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "prepare": "node -e 'require(\"fs\").mkdirSync(\"public/css\",{recursive:true})' && smui-theme compile public/css/smui.css -i src/theme -i ./node_modules"
+    "prepare": "node -e 'require(\"fs\").mkdirSync(\"public/css\",{recursive:true})' && smui-theme compile src/assets/smui.css -i src/theme -i ./node_modules"
   },
   "devDependencies": {
     "@smui/button": "^6.1.0",
