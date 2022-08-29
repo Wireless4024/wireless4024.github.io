@@ -5,18 +5,14 @@
 		Content
 	}                      from "@smui/card"
 	import {push}          from "svelte-spa-router";
+	import {EN_GB}         from "../util/datetime";
 	import type {Project}  from "./types/project"
 
 	export let project: Project
-	const format: Intl.DateTimeFormat = new Intl.DateTimeFormat("en-GB", {
-		day  : "numeric",
-		month: "short",
-		year : "numeric"
-	})
 </script>
 <Card>
 	<Content class="mdc-typography--body2">
-		<h2 class="mdc-typography--headline6" style="margin: 0;">{project.name} [{format.format(project.since)}]</h2>
+		<h2 class="mdc-typography--headline6" style="margin: 0;">{project.name} [{EN_GB.format(project.since)}]</h2>
 		{#if project.technology?.length}
 			<h3 class="mdc-typography--subtitle2"
 			    style="margin: 0 0 10px; color: #888;">{(
