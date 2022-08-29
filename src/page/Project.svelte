@@ -1,19 +1,22 @@
 <script lang="ts">
-	import Button         from "@smui/button";
+	import Button from "@smui/button";
 	import List, {
 		Item,
 		PrimaryText,
 		SecondaryText,
 		Text
-	}                     from '@smui/list'
+	}             from '@smui/list'
 	import Paper, {
 		Content,
 		Subtitle,
 		Title
-	}                     from '@smui/paper';
-	import {push}         from "svelte-spa-router";
+	}             from '@smui/paper';
+	import {push} from "svelte-spa-router";
+
+	import {fly}          from "svelte/transition"
 	import projects       from "../lib/constant/projects"
 	import Container      from "../lib/Container.svelte"
+	import Section        from "../lib/Section.svelte";
 	import type {Project} from "../lib/types/project"
 
 	export let params: { name?: string } = {}
@@ -23,7 +26,7 @@
 </script>
 <Container>
 	{#if project}
-		<div class="border">
+		<Section>
 			<Paper>
 				<Title>{project.name}</Title>
 				{#if project.repo}
@@ -33,8 +36,8 @@
 				{/if}
 				<Content>{project.description}</Content>
 			</Paper>
-		</div>
-		<div class="border" style="margin-top: 8px">
+		</Section>
+		<Section order={1}>
 			<Paper>
 				<Title>Features</Title>
 				<Content>
@@ -46,8 +49,8 @@
 					</ul>
 				</Content>
 			</Paper>
-		</div>
-		<div class="border" style="margin-top: 8px">
+		</Section>
+		<Section order={2}>
 			<Paper>
 				<Title>Technology</Title>
 				<Content>
@@ -70,8 +73,8 @@
 					</List>
 				</Content>
 			</Paper>
-		</div>
-		<div class="center">
+		</Section>
+		<div in:fly={{delay:700}} class="center">
 			<div style="margin-bottom: 32px">
 				<Button class="border-out" style="background: white;margin: 16px" on:click={()=>push('/projects')}>view
 					all {projects.length} projects
