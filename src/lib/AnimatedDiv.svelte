@@ -3,6 +3,6 @@
 
 	export let order: number = 0
 </script>
-<div in:fly={{delay:(300-(order*order*10))*(order)}} {...$$props}>
+<div in:fly={{delay:(300-(order*order*5))*order}} {...$$props}>
 	<slot></slot>
 </div>

@@ -6,6 +6,7 @@
 		Text
 	}                      from "@smui/list";
 	import {push}          from "svelte-spa-router";
+	import AnimatedDiv     from "../lib/AnimatedDiv.svelte";
 	import Container       from "../lib/Container.svelte"
 	import Section         from "../lib/Section.svelte"
 	import {EN_GB}         from "../util/datetime.js";
@@ -35,6 +36,9 @@
 					<Text>Wittawat Manha</Text>
 				</Item>
 				<Item>
+					<Text>I'm working as backend developer.</Text>
+				</Item>
+				<Item>
 					<Text>{EN_GB.format(birth_date)} ({new Date().getFullYear() - birth_date.getFullYear()}y)</Text>
 				</Item>
 				<Item>
@@ -43,37 +47,43 @@
 			</List>
 		</div>
 	</Section>
-	<Section style="padding: 12px">
+	<Section style="padding: 12px" order={1}>
 		<h3 style="margin-top: auto">Skills</h3>
-		<div>
-			<span class="bold">Programming Languages : </span>
+		<AnimatedDiv order={2}>
 			<div>
-				<ol>
-					{#each skills as skill}
-						<li>
-							{skill}
-						</li>
-					{/each}
-				</ol>
+				<span class="bold">Programming Languages : </span>
+				<div>
+					<ol>
+						{#each skills as skill}
+							<li>
+								{skill}
+							</li>
+						{/each}
+					</ol>
+				</div>
 			</div>
-		</div>
-		<div>
-			<span class="bold">Linux : </span>
+		</AnimatedDiv>
+		<AnimatedDiv order={3}>
 			<div>
-				<ol>
-					{#each linux as l}
-						<li>
-							<a href={l.url}>{l.name}</a>
-						</li>
-					{/each}
-				</ol>
+				<span class="bold">Linux : </span>
+				<div>
+					<ol>
+						{#each linux as l}
+							<li>
+								<a href={l.url}>{l.name}</a>
+							</li>
+						{/each}
+					</ol>
+				</div>
 			</div>
-		</div>
-		<div>
-			<Button on:click={()=>push(("/projects"))} variant="outlined">
-				<Label>Projects</Label>
-			</Button>
-		</div>
+		</AnimatedDiv>
+		<AnimatedDiv order={4}>
+			<div>
+				<Button on:click={()=>push(("/projects"))} variant="outlined">
+					<Label>Projects</Label>
+				</Button>
+			</div>
+		</AnimatedDiv>
 	</Section>
 </Container>
 <style>
