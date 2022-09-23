@@ -38,7 +38,7 @@
 	<Content>
 		<List>
 			<NavItem href="/" icon="home">Home</NavItem>
-			<NavItem href="/projects" icon="home">Projects</NavItem>
+			<NavItem href="/projects" icon="book">Projects</NavItem>
 			<Separator/>
 			<Subheader component={H6}>NYI</Subheader>
 			<Item href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
