@@ -21,6 +21,8 @@
 <Item href="javascript:void(0)" on:click={()=>push(href)} {activated}>
 	{#if icon}
 		<Graphic class="material-icons" aria-hidden="true">{icon}</Graphic>
+	{:else}
+		<Graphic class="material-icons" aria-hidden="true">more_horiz</Graphic>
 	{/if}
 	<Text>
 		<slot></slot>

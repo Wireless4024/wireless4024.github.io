@@ -40,11 +40,8 @@
 			<NavItem href="/" icon="home">Home</NavItem>
 			<NavItem href="/projects" icon="book">Projects</NavItem>
 			<Separator/>
-			<Subheader component={H6}>NYI</Subheader>
-			<Item href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-				<Graphic class="material-icons" aria-hidden="true">audiotrack</Graphic>
-				<Text>Rick roll for no reason</Text>
-			</Item>
+			<Subheader component={H6}>Utility</Subheader>
+			<NavItem href="/utils/completor">Completor (WIP)</NavItem>
 		</List>
 	</Content>
 </Drawer>
