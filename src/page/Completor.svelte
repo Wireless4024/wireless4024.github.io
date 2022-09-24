@@ -48,7 +48,6 @@
 	function complete(ev: KeyboardEvent) {
 		if (ev.key.length == 1) {
 			hint_idx = 0
-			ghost = ghost.substring(1)
 		}
 		let isTab: boolean
 		if ((isTab = (ev.key == "Tab")) || ev.key == "Enter") {
@@ -73,6 +72,7 @@
 			} else {
 				isTab && ev.preventDefault()
 			}
+			tick().then(type)
 		}
 		if (ev.key == "ArrowDown") {
 			if (hint_idx + 1 < hint_arr.length)
@@ -89,9 +89,7 @@
 	}
 
 	function type() {
-		tick().then(function () {
-			editor.set_args(editor_elem.innerText)
-		})
+		editor.set_args(editor_elem.innerText)
 	}
 
 	function is_last() {
@@ -150,7 +148,7 @@
 	<div class="editor-container">
 		<div>
 			<div bind:this={editor_elem} contenteditable="true" class="editor" on:keydown={complete}
-			     on:keyup={type}
+			     on:input={type}
 			     bind:innerHTML={text}></div>
 			<span class="helper" on:click={focus}>{ghost}</span>
 		</div>
