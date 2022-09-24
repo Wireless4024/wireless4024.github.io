@@ -7,13 +7,27 @@ export class ArgsParser {
 		this.off = offset
 	}
 
-	private next_token(): string | null {
+	private next_token(): ArgParseResult | null {
 		let off = this.off
 		const token = this.token
 		const len = token.length
+		if (off >= len) return null
 		// skip whitespace
 		while (off < len) {
-			if (!is_whitespace(token[off]))
+			let cursor = token[off]
+			if (cursor == '&') {
+				let marker = off
+				while (off < len) {
+					++off
+					if (token[off] == ';') {
+						cursor = token.substring(marker, off + 1)
+						marker = off
+						break
+					}
+				}
+				off = marker
+			}
+			if (!is_whitespace(cursor))
 				break
 			++off
 			if (off == len) return null // EOF
@@ -22,20 +36,94 @@ export class ArgsParser {
 		const head = token[off]
 		const quoted = head == '"' || head == "'"
 
-		const marker = off + ((quoted || head == "\\") as unknown as number) // number + boolean is fine here
+		const marker: number = off + ((quoted || head == '\\') as any) // number + boolean is fine here
+		off = marker
+		while (off < len) {
+			let cursor = token[off]
+			if (cursor == '&') {
+				let marker = off
+				while (off < len) {
+					++off
+					if (token[off] == ';') {
+						cursor = token.substring(marker, off + 1)
+						marker = off
+						break
+					}
+				}
+				off = marker
+			}
+			if (quoted && cursor == head) break
+			if (is_whitespace(cursor)) {
+				if (!quoted) break
+			}
+			if (cursor == '\\') ++off
+
+			++off
+			if (off >= len) break // EOF
+		}
 		this.end(off)
-		return normalize_text_token(this.token.substring(marker, off))
+		return {text: normalize_text_token(this.token.substring(marker, off)), start: marker}
 	}
 
 	parse(): string[] {
-		return []
+		let args: string[] = []
+		let arg: ArgParseResult | null = null
+		while (arg = this.next_token()) {
+			args.push(arg.text)
+		}
+		return args
+	}
+
+	parse_detail(): ArgParseResult[] {
+		let args: ArgParseResult[] = []
+		let arg: ArgParseResult | null = null
+		while (arg = this.next_token()) {
+			args.push(arg)
+		}
+		return args
 	}
 }
 
-export function is_whitespace(ch: string) {
-	return ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' || ch == '\x0C'
+export type ArgParseResult = {
+	text: string
+	start: number
 }
 
-export function normalize_text_token(token: string): string {
-	return token
+function is_whitespace(ch: string) {
+	return ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' || ch == '\x0C' || ch == '&nbsp;'
+}
+
+function normalize_text_token(token: string): string {
+	let res = ""
+	const quote = token[0] == '"' || token[0] == "'"
+	let off: number = 0 + (quote as any)
+	const len = token.length - off
+	while (off < len) {
+		let cursor = token[off]
+		if (cursor == '\\') {
+			const next = ++off
+			if (next == len) break
+			cursor = token[next]
+		}
+		res += cursor
+		++off
+	}
+	return res
+}
+
+function peek_eq(text: string, offset: number, expected: string): boolean {
+	const ex_len = expected.length
+	if ((text.length + offset) < ex_len) {
+		return text.substring(offset, offset + ex_len) == expected
+	}
+	return false
+}
+
+/**
+ * export for testing only
+ */
+export const __private__ = {
+	is_whitespace,
+	normalize_text_token,
+	peek_eq
 }

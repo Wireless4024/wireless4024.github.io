@@ -4,29 +4,23 @@
 		onMount,
 		tick
 	}                     from "svelte"
+	import {Editor}       from "../lib/completor/editor"
+	import Container      from "../lib/Container.svelte";
 	import {was_child_of} from '../util/dom_helper'
 
-	let text = "aaaaaa"
-	let ghost = "sss"
+	let text = ""
+	let ghost = ""
 
-	let editor: HTMLDivElement
+	let editor_elem: HTMLDivElement
 
 	function attach_body(ev: Event) {
-		if (was_child_of(editor, ev.target as HTMLElement)) {
+		if (was_child_of(editor_elem, ev.target as HTMLElement)) {
 			console.log("INTERACT")
 		} else {
 			console.log("focus")
 			focus()
 		}
 	}
-
-	onMount(function () {
-		document.addEventListener("click", attach_body)
-	})
-
-	onDestroy(function () {
-		document.removeEventListener("click", attach_body)
-	})
 
 	function compute_len(text: string): number {
 		let len = 0
@@ -52,6 +46,10 @@
 	}
 
 	function complete(ev: KeyboardEvent) {
+		if (ev.key.length == 1) {
+			hint_idx = 0
+			ghost = ghost.substring(1)
+		}
 		let isTab: boolean
 		if ((isTab = (ev.key == "Tab")) || ev.key == "Enter") {
 			if (is_last()) {
@@ -66,12 +64,34 @@
 					tick().then(() => focus_offset())
 				} else if (!isTab && !ev.shiftKey) {
 					ev.preventDefault()
-					const cli = editor.innerText
+					const cli = editor_elem.innerText
 					text = ghost = ""
 					submit(cli)
+				} else {
+					isTab && ev.preventDefault()
 				}
+			} else {
+				isTab && ev.preventDefault()
 			}
 		}
+		if (ev.key == "ArrowDown") {
+			if (hint_idx + 1 < hint_arr.length)
+				hint_idx = hint_idx + 1
+			else hint_idx = 0
+			ev.preventDefault()
+		}
+		if (ev.key == "ArrowUp") {
+			if (hint_idx > 0)
+				hint_idx = hint_idx - 1
+			else hint_idx = (hint_arr.length) - 1
+			ev.preventDefault()
+		}
+	}
+
+	function type() {
+		tick().then(function () {
+			editor.set_args(editor_elem.innerText)
+		})
 	}
 
 	function is_last() {
@@ -79,7 +99,7 @@
 		const node = selection.focusNode
 		if (node.TEXT_NODE) {
 			const text_node = node as Text
-			if (node == editor) return true
+			if (node == editor_elem) return true
 			return text_node?.wholeText?.length == get_cursor()
 		}
 	}
@@ -90,41 +110,96 @@
 
 	function focus_offset(offset?: number) {
 		const selection = getSelection()
-		selection.collapse(editor.lastChild, offset || (editor.lastChild as Text).wholeText.length)
+		selection.collapse(editor_elem.lastChild || editor_elem, offset || (editor_elem.lastChild as Text)?.wholeText?.length)
 	}
 
 	function focus() {
-		editor.focus()
+		editor_elem.focus()
 		focus_offset()
 	}
 
 	function submit(cli: string) {
-		cli && console.log("RUNNING", cli)
+		cli && list.splice(0, 0, cli) && (list = list)
 	}
+
+	function set_hint(text: string) {
+		tick().then(function () {
+			ghost = text?.substring(args_str?.[args_str?.length - 1]?.length) || ""
+		})
+	}
+
+	const editor = new Editor()
+	const hints = editor.hints
+	const args = editor.args
+	$: args_str = $args.map(it => it.text)
+	$:hint_arr = $hints
+	let hint_idx = 0
+	hints.subscribe(it => set_hint(it[hint_idx]))
+	let list = []
+
+	onMount(function () {
+		document.addEventListener("click", attach_body)
+		ghost = hint_arr[0]
+	})
+
+	onDestroy(function () {
+		document.removeEventListener("click", attach_body)
+	})
 </script>
-<div>
-	<div bind:this={editor} contenteditable="true" class="editor" on:keydown={complete}
-	     bind:innerHTML={text}></div>
-	<span class="helper" on:click={focus}>{ghost}</span>
-</div>
-<div>
-	<h2>DEBUG</h2>
-	<div>RAW: `{text}`</div>
-	<div>HINT: `{ghost}`</div>
-	<div>len: {compute_len(text)}</div>
-</div>
-<div>
-	<h2>Usage</h2>
-	<div>&lt;TAB&gt; - Insert hint</div>
-</div>
+<Container>
+	<div class="editor-container">
+		<div>
+			<div bind:this={editor_elem} contenteditable="true" class="editor" on:keydown={complete}
+			     on:keyup={type}
+			     bind:innerHTML={text}></div>
+			<span class="helper" on:click={focus}>{ghost}</span>
+		</div>
+	</div>
+	<div>
+		<h2>DEBUG</h2>
+		<div>RAW: `{text}`</div>
+		<div>ARGS: `{args_str}`</div>
+		<div>HINT: `{ghost}`</div>
+		<div>HINTS: `{hint_arr}`</div>
+		<div>len: {compute_len(text)}</div>
+	</div>
+	<div>
+		<h2>Usage</h2>
+		<div><code>&lt;TAB&gt;</code> - Insert hint</div>
+		<div><code>&lt;ArrowUp&gt;</code> - Previous hint</div>
+		<div><code>&lt;ArrowDown&gt;</code> - Next hint</div>
+		<div><code>\</code> - To prevent split on whitespace</div>
+		<div><code>"</code> or <code>'</code> - To group word</div>
+	</div>
+	<div>
+		<h2>Submitted</h2>
+		<ul>
+			{#each list as li}
+				<li>{li}</li>
+			{/each}
+		</ul>
+	</div>
+</Container>
 <style>
+	.editor-container {
+		background-color: white;
+		padding: 8px;
+		border-radius: 8px;
+		margin: 16px;
+	}
 
 	.helper, .editor {
+		font-size: 2em;
 		display: inline-block;
+		font-family: monospace;
 	}
 
 	.helper {
 		color: #888888;
-		margin: auto 0 auto -0.25em;
+		margin: auto 0 auto -0.15em;
+	}
+
+	.editor {
+		outline: none;
 	}
 </style>
