@@ -1,5 +1,6 @@
 import {
 	__private__,
+	escaped_html_len,
 	parse_html_token
 } from "./args_parser"
 
@@ -30,4 +31,9 @@ it('should peek text and check if equals', function () {
 
 it('should parse escaped html token', function () {
 	expect(parse_html_token("abcdef&nbsp;").collect()).toStrictEqual(["a", "b", "c", "d", "e", "f", "&nbsp;"])
+});
+
+it('should count length of escaped html token', function () {
+	expect(escaped_html_len("abcdef&nbsp;")).toEqual(7)
+	expect(escaped_html_len("abcdef&nbsp;&lt;")).toEqual(8)
 }); 

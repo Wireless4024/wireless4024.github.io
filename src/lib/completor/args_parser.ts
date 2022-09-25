@@ -182,3 +182,26 @@ class HtmlEscapeTokenParer implements Iterator<string, string> {
 export function parse_html_token(tokens: string): Iterator<string, string> & { collect: () => string[] } {
 	return new HtmlEscapeTokenParer(tokens)
 }
+
+export function escaped_html_len(tokens: string): number {
+	let length = 0
+	const len = tokens.length
+	let offset = 0
+	while (offset < len) {
+		let char = tokens[offset]
+		if (char == '&') {
+			let marker = offset
+			while (offset < len) {
+				if (tokens[offset] == ';') {
+					marker = offset
+					break
+				}
+				++offset
+			}
+			offset = marker
+		}
+		++offset
+		++length
+	}
+	return length
+}
