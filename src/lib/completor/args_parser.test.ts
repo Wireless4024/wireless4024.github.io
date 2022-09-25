@@ -1,4 +1,7 @@
-import {__private__} from "./args_parser"
+import {
+	__private__,
+	parse_html_token
+} from "./args_parser"
 
 const {
 	      is_whitespace,
@@ -23,4 +26,8 @@ it('should normalize escaped text', function () {
 it('should peek text and check if equals', function () {
 	expect(peek_eq('hello world', 6, "world"))
 	expect(!peek_eq('hello world', 7, "world"))
+});
+
+it('should parse escaped html token', function () {
+	expect(parse_html_token("abcdef&nbsp;").collect()).toStrictEqual(["a", "b", "c", "d", "e", "f", "&nbsp;"])
 }); 

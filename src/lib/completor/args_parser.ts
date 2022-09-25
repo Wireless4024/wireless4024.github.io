@@ -127,3 +127,58 @@ export const __private__ = {
 	normalize_text_token,
 	peek_eq
 }
+
+class HtmlEscapeTokenParer implements Iterator<string, string> {
+	private offset = 0
+
+	constructor(private tokens: string) {}
+
+	private end(offset: number) {
+		const old = this.offset
+		this.offset = offset
+		return this.tokens.substring(old, offset)
+	}
+
+	next(): IteratorResult<string, string> {
+		const tokens = this.tokens
+		const len = tokens.length
+		let offset = this.offset
+
+		let char = this.tokens[offset]
+		if (char == '&') {
+			let marker = offset
+			while (offset < len) {
+				if (tokens[offset] == ';') {
+					marker = offset
+					break
+				}
+				++offset
+			}
+			offset = marker
+		}
+		++offset
+
+		if (offset == len)
+			return {done: true, value: this.end(offset)}
+		else
+			return {done: false, value: this.end(offset)}
+	}
+
+	return(): IteratorResult<string, string> {
+		return {done: true} as any
+	}
+
+	collect(): string[] {
+		const arr: string[] = []
+		let item
+		while (item = this.next()) {
+			arr.push(item.value)
+			if (item.done) break
+		}
+		return arr
+	}
+}
+
+export function parse_html_token(tokens: string): Iterator<string, string> & { collect: () => string[] } {
+	return new HtmlEscapeTokenParer(tokens)
+}
