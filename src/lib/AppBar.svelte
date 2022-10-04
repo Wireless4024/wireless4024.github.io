@@ -22,6 +22,7 @@
 	}                                   from '@smui/top-app-bar'
 	import {push}                       from "svelte-spa-router"
 	import NavItem                      from "./NavItem.svelte";
+	import StatusBar                    from "./StatusBar.svelte";
 
 	let topAppBar: TopAppBarComponentDev
 
@@ -66,3 +67,4 @@
 		<slot></slot>
 	</AutoAdjust>
 </AppContent>
+<StatusBar></StatusBar>
