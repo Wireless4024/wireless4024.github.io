@@ -1,9 +1,9 @@
 <script lang="ts">
 	import {
-		onDestroy,
 		onMount,
 		tick
 	}                     from "svelte"
+	import CommandToken   from "../lib/completor/CommandToken.svelte";
 	import {Editor}       from "../lib/completor/editor"
 	import Container      from "../lib/Container.svelte";
 	import {was_child_of} from '../util/dom_helper'
@@ -126,32 +126,36 @@
 		})
 	}
 
-	const editor = new Editor()
+	const editor = new Editor("cat", "/dev/sda1")
 	const hints = editor.hints
 	const args = editor.args
-	$: args_str = $args.map(it => it.text)
+	$: args_str = $args.map(it => it)
 	$:hint_arr = $hints
 	let hint_idx = 0
 	hints.subscribe(it => set_hint(it[hint_idx]))
 	let list = []
-
+	/*
+		onMount(function () {
+			document.addEventListener("click", attach_body)
+			ghost = hint_arr[0]
+		})
+	
+		onDestroy(function () {
+			document.removeEventListener("click", attach_body)
+		})*/
 	onMount(function () {
-		document.addEventListener("click", attach_body)
-		ghost = hint_arr[0]
-	})
-
-	onDestroy(function () {
-		document.removeEventListener("click", attach_body)
+		editor.set_root(editor_elem)
 	})
 </script>
 <Container>
-	<div class="editor-container">
-		<div>
-			<div bind:this={editor_elem} contenteditable="true" class="editor" on:keydown={complete}
-			     on:input={type}
-			     bind:innerHTML={text}></div>
-			<span class="helper" on:click={focus}>{ghost}</span>
-		</div>
+	<div class="editor-container" bind:this={editor_elem}>
+		{#each $args as arg, idx}
+			<CommandToken {editor} {arg} {idx}></CommandToken>
+		{/each}
+		<!--<div bind:this={editor_elem} contenteditable="true" class="editor" on:keydown={complete}
+			 on:input={type}
+			 bind:innerHTML={text}></div>
+		<span class="helper" on:click={focus}>{ghost}</span>-->
 	</div>
 	<div>
 		<h2>DEBUG</h2>
@@ -184,20 +188,22 @@
 		padding: 8px;
 		border-radius: 8px;
 		margin: 16px;
-	}
-
-	.helper, .editor {
-		font-size: 2em;
-		display: inline-block;
 		font-family: monospace;
+		font-size: 2em;
 	}
 
-	.helper {
-		color: #888888;
-		margin: auto 0 auto -0.15em;
-	}
-
-	.editor {
-		outline: none;
-	}
+	/*	.helper, .editor {
+			font-size: 2em;
+			display: inline-block;
+			font-family: monospace;
+		}
+	
+		.helper {
+			color: #888888;
+			margin: auto 0 auto -0.15em;
+		}
+	
+		.editor {
+			outline: none;
+		}*/
 </style>
