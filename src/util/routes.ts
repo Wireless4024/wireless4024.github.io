@@ -14,10 +14,11 @@ function component(asyncComponent: AsyncSvelteComponent) {
 }
 
 const routes: Record<string, WrappedComponent> = {
-	'/'               : component(() => import("../page/Home.svelte")),
-	'/projects'       : component(() => import("../page/ProjectList.svelte")),
-	'/project/:name'  : component(() => import("../page/Project.svelte")),
-	'/utils/completor': component(() => import("../page/Completor.svelte")),
+	'/'                 : component(() => import("../page/Home.svelte")),
+	'/projects'         : component(() => import("../page/ProjectList.svelte")),
+	'/project/:name'    : component(() => import("../page/Project.svelte")),
+	'/utils/completor'  : component(() => import("../page/Completor.svelte")),
+	'/utils/grpc-client': component(() => import("../page/GrpcClient.svelte")),
 }
 
 // ctrl f can't find this route
