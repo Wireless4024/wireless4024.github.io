@@ -11,11 +11,8 @@
 	import IconButton                   from '@smui/icon-button'
 	//Title,
 	import List, {
-		Graphic,
-		Item,
 		Separator,
-		Subheader,
-		Text
+		Subheader
 	}                                   from '@smui/list'
 	import type {TopAppBarComponentDev} from '@smui/top-app-bar'
 	import TopAppBar, {
@@ -42,6 +39,7 @@
 			<Separator/>
 			<Subheader component={H6}>Utility</Subheader>
 			<NavItem href="/utils/completor">Completor (WIP)</NavItem>
+			<NavItem href="https://wireless4024.github.io/minecrafter-utility">Minecrafter Utility</NavItem>
 		</List>
 	</Content>
 </Drawer>
