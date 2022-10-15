@@ -10,11 +10,8 @@
 	import IconButton                   from '@smui/icon-button'
 	//Title,
 	import List, {
-		Graphic,
-		Item,
 		Separator,
-		Subheader,
-		Text
+		Subheader
 	}                                   from '@smui/list'
 	import TopAppBar, {
 		AutoAdjust,
@@ -40,6 +37,7 @@
 			<Separator/>
 			<Subheader>Utility</Subheader>
 			<NavItem href="/utils/completor">Completor (WIP)</NavItem>
+			<NavItem href="https://wireless4024.github.io/minecrafter-utility">Minecrafter Utility</NavItem>
 			<NavItem href="/utils/word-finder">WordFinder</NavItem>
 		</List>
 	</Content>
