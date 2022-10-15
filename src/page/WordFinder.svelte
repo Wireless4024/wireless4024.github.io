@@ -66,9 +66,11 @@
 	</div>
 	<FormField align="end" style="display: flex;">
 		<Slider style="flex-grow: 1;" bind:value={max_len} min="3" max={max_word_len} step="1"/>
-		<span slot="label" style="padding-right: 12px; width: max-content; display: block;">
-    Max word length
-  </span>
+		<span slot="label" style="padding-right: 12px; width: max-content; display: block;">Max word length ({max_len})</span>
+	</FormField>
+	<FormField align="end" style="display: flex;">
+		<Slider style="flex-grow: 1;" bind:value={max_match} min="50" max="5000" step="50"/>
+		<span slot="label" style="padding-right: 12px; width: max-content; display: block;">Max result ({max_match})</span>
 	</FormField>
 	<div>
 		<Textfield bind:files={selected_file} label="" type="file"/>
