@@ -1,5 +1,4 @@
 <script lang="ts">
-	import {H6}                         from '@smui/common/elements'
 	import Drawer, {
 		AppContent,
 		Content,
@@ -17,7 +16,6 @@
 		Subheader,
 		Text
 	}                                   from '@smui/list'
-	import type {TopAppBarComponentDev} from '@smui/top-app-bar'
 	import TopAppBar, {
 		AutoAdjust,
 		Row,
@@ -26,7 +24,7 @@
 	import {push}                       from "svelte-spa-router"
 	import NavItem                      from "./NavItem.svelte";
 
-	let topAppBar: TopAppBarComponentDev
+	let topAppBar: any
 
 	let open: boolean = false
 </script>
@@ -40,8 +38,9 @@
 			<NavItem href="/" icon="home">Home</NavItem>
 			<NavItem href="/projects" icon="book">Projects</NavItem>
 			<Separator/>
-			<Subheader component={H6}>Utility</Subheader>
+			<Subheader>Utility</Subheader>
 			<NavItem href="/utils/completor">Completor (WIP)</NavItem>
+			<NavItem href="/utils/word-finder">WordFinder</NavItem>
 		</List>
 	</Content>
 </Drawer>

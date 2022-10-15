@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Button, {Label} from "@smui/button";
-	import {H1}            from "@smui/common/elements"
 	import List, {
 		Item,
 		Text
@@ -27,7 +26,7 @@
 	]
 </script>
 <Container>
-	<H1>Resume</H1>
+	<h1>Resume</h1>
 	<Section style="padding: 12px">
 		<h3 style="margin: 0 auto">About me</h3>
 		<div>
