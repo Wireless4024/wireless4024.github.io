@@ -5,6 +5,7 @@ specifiers:
   '@smui/card': ^7.0.0-beta.0
   '@smui/common': ^7.0.0-beta.0
   '@smui/drawer': ^7.0.0-beta.0
+  '@smui/form-field': 7.0.0-beta.0
   '@smui/icon-button': ^7.0.0-beta.0
   '@smui/layout-grid': ^7.0.0-beta.0
   '@smui/linear-progress': ^7.0.0-beta.0
@@ -36,6 +37,7 @@ devDependencies:
   '@smui/card': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
   '@smui/common': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
   '@smui/drawer': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
+  '@smui/form-field': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
   '@smui/icon-button': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
   '@smui/layout-grid': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
   '@smui/linear-progress': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
@@ -795,6 +797,18 @@ packages:
       '@material/rtl': 14.0.0
     dev: true
 
+  /@material/form-field/14.0.0:
+    resolution: {integrity: sha512-k1GNBj6Sp8A7Xsn5lTMp5DkUkg60HX7YkQIRyFz1qCDCKJRWh/ou7Z45GMMgKmG3aF6LfjIavc7SjyCl8e5yVg==}
+    dependencies:
+      '@material/base': 14.0.0
+      '@material/feature-targeting': 14.0.0
+      '@material/ripple': 14.0.0
+      '@material/rtl': 14.0.0
+      '@material/theme': 14.0.0
+      '@material/typography': 14.0.0
+      tslib: 2.4.0
+    dev: true
+
   /@material/icon-button/14.0.0:
     resolution: {integrity: sha512-wHMqzm7Q/UwbWLoWv32Li1r2iVYxadIrwTNxT0+p+7NdfI3lEwMN3NoB0CvoJnHTljjXDzce0KJ3nZloa0P0gA==}
     dependencies:
@@ -1134,6 +1148,19 @@ packages:
     resolution: {integrity: sha512-4MYgkcMu0Ya+7ZxdP+2sWqmrIj6w7xlUrNBXrTF6Ae6RZGXuCl9guhPwIpJvRClZrEtai5OMMXvyATVZg19mhA==}
     dependencies:
       '@material/floating-label': 14.0.0
+      '@smui/common': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
+      svelte2tsx: 0.5.20_c36sqhgzdfaw4kmxogryyrffx4
+    transitivePeerDependencies:
+      - svelte
+      - typescript
+    dev: true
+
+  /@smui/form-field/7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4:
+    resolution: {integrity: sha512-YWHg8bH1+sc8j5wmdbGdZJNtireCro7fBNp8RZCceChHXQPvaxhUwRU6zV/HepcVLT14SVSO3px5jRNnpCuM8Q==}
+    dependencies:
+      '@material/feature-targeting': 14.0.0
+      '@material/form-field': 14.0.0
+      '@material/rtl': 14.0.0
       '@smui/common': 7.0.0-beta.0_c36sqhgzdfaw4kmxogryyrffx4
       svelte2tsx: 0.5.20_c36sqhgzdfaw4kmxogryyrffx4
     transitivePeerDependencies:
