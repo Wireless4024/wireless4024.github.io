@@ -36,9 +36,9 @@
 			<NavItem href="/projects" icon="book">Projects</NavItem>
 			<Separator/>
 			<Subheader>Utility</Subheader>
+			<NavItem href="/utils/word-finder" icon="book">WordFinder</NavItem>
 			<NavItem href="/utils/completor">Completor (WIP)</NavItem>
 			<NavItem href="https://wireless4024.github.io/minecrafter-utility">Minecrafter Utility</NavItem>
-			<NavItem href="/utils/word-finder">WordFinder</NavItem>
 		</List>
 	</Content>
 </Drawer>
