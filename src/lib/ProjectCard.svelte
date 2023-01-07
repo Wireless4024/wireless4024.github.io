@@ -1,4 +1,4 @@
-<script type="ts">
+<script lang="ts">
 	import Button, {Label} from "@smui/button"
 	import Card, {
 		Actions,
