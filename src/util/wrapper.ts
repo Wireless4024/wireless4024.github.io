@@ -5,3 +5,26 @@
  * @inheritDoc
  */
 export const fromCharCode = String.fromCharCode
+export const showOpenFilePicker: () => Promise<FileSystemFileHandle[]> = (window as any).showOpenFilePicker
+
+type SaveFilePickerOption = {
+	excludeAcceptAllOption?: boolean
+	suggestedName?: string
+	types: {
+		description?: string,
+		accept?: Record<string, string[]>
+	}[]
+}
+
+type WritableFileHandle = {
+	createWritable(): Promise<WritableFile>
+}
+
+export type WritableFile = {
+	write(blob: any): Promise<number>
+	close(): Promise<void>
+}
+/**
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker
+ */
+export const showSaveFilePicker: (options?: SaveFilePickerOption) => Promise<FileSystemFileHandle & WritableFileHandle> = (window as any).showSaveFilePicker

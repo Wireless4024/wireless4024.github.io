@@ -38,6 +38,7 @@
 			<Subheader>Utility</Subheader>
 			<NavItem href="/utils/word-finder" icon="book">WordFinder</NavItem>
 			<NavItem href="/utils/completor">Completor (WIP)</NavItem>
+			<NavItem href="/utils/cv-mat-editor" icon="grid_on">Mat editor (opencv)</NavItem>
 			<NavItem href="https://wireless4024.github.io/minecrafter-utility">Minecrafter Utility</NavItem>
 		</List>
 	</Content>
