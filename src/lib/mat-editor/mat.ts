@@ -149,10 +149,20 @@ function g2c(g: number): number {
 	return g << 16 | g << 8 | g
 }
 
-function bgra(buf: Uint8Array, off: number, channel: number): number {
-	let color = (buf[off]) | (buf[off + 1] << 8) | (buf[off + 2] << 16)
-	if (channel == 4) {color |= buf[off + 3] << 24}
-	return color
+function bgra(buf: Uint8Array, off: number, channel: number): string {
+	if (channel == 4) {
+		let color = "rgba("
+		color += buf[off + 2] + ","
+		color += buf[off + 1] + ","
+		color += buf[off] + ","
+		if (channel == 4) {
+			color += buf[off + 3] / 255
+		} else {
+			color += "1"
+		}
+		return color + ")"
+	}
+	return "#" + ((buf[off]) | (buf[off + 1] << 8) | (buf[off + 2] << 16))
 }
 
 function render_8u(mat: CvMat, target: RenderTarget) {
@@ -180,7 +190,7 @@ function render_8u(mat: CvMat, target: RenderTarget) {
 			const row_px = y * row_width
 			const row = data.slice(row_px, row_px + row_width)
 			for (let x = 0; x < width; ++x) {
-				ctx.fillStyle = "#" + bgra(row, x * channel, channel).toString(16)
+				ctx.fillStyle = bgra(row, x * channel, channel)
 				ctx.fillRect(x, y, 1, 1)
 			}
 		}

@@ -33,6 +33,10 @@
 
 	let mX = 0
 	let mY = 0
+	let r = 0
+	let g = 0
+	let b = 0
+	let a = 0
 
 	let zoom = 1
 
@@ -41,8 +45,14 @@
 	let canvas_container: HTMLDivElement
 
 	function mousemove(ev: MouseEvent) {
-		mX = ev.pageX - canvas_container.offsetLeft
-		mY = ev.pageY - canvas_container.offsetTop
+		mX = Math.max(0, Math.min(width, ev.pageX - canvas_container.offsetLeft))
+		mY = Math.max(0, Math.min(height, ev.pageY - canvas_container.offsetTop))
+		const ctx = canvas.getContext("2d")
+		const im = ctx.getImageData(mX, mY, 1, 1);
+		r = im.data[0]
+		g = im.data[1]
+		b = im.data[2]
+		a = im.data[3] / 255
 	}
 
 	onMount(function () {
@@ -118,10 +128,12 @@
 		<Button on:click={render_crop}>Render</Button>
 		<Button on:click={save}>Save</Button>
 	</div>
-	<div>x: {mX} y: {mY}</div>
+	<div>x: {mX} y: {mY}: RGBA({r}, {g}, {b}, {a})</div>
 	<div bind:this={canvas_container} style="display: inline-block;margin-top: 16pt">
+
 		<div style="position:absolute;z-index: 1;border: gray solid 1px;transform:scale({zoom});width:{cwidth}px;height:{cheight}px;margin-top:{y1}px;margin-left:{x1}px"></div>
-		<canvas style="transform:scale({zoom});border: gray solid 1px" bind:this={canvas} {width} {height}></canvas>
+		<canvas style="position:relative;transform:scale({zoom});border: gray solid 1px" bind:this={canvas} {width}
+		        {height}></canvas>
 	</div>
 	<hr>
 	<div>crop</div>
